@@ -1,0 +1,13 @@
+{% extends "../_base.html" %}
+<!--  -->
+{% block content %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        タイトル：<input type="text" name="title">
+        コメント：<textarea name="comments" cols="30" rows="10"></textarea>
+        お題画像：<span class="preview"></span><input type="file" name="file">
+        <input type="submit" value="upload">
+    </form>
+</div>
+{% endblock %}
