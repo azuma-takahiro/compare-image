@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.template.context_processors import csrf
 from django.conf import settings
+from django.http import JsonResponse
 from myapp.models import FileModel, ThemeModel, ItemModel
 from pprint import pprint
 
@@ -59,6 +60,23 @@ def theme_index(request):
     return render(request, 'themes/index.html', themes)
 
 
+def upload_file(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        ext = os.path.splitext(file.name)[1]
+        filename = random_string(32) + ext
+        path = os.path.join(UPLOADE_DIR, filename)
+        destination = open(path, 'wb')
+
+        for chunk in file.chunks():
+            destination.write(chunk)
+
+        files = FileModel(file_name=filename, original_name=file.name)
+        files.save()
+
+        return JsonResponse({"file_id": files.pk})
+
+
 def compare(request, id):
     if request.method == 'GET':
         theme = ThemeModel.objects.all().select_related().filter(id=id).first()
@@ -70,22 +88,7 @@ def compare(request, id):
     elif request.method == 'POST':
         theme = ThemeModel.objects.all().select_related().filter(id=id).first()
 
-        try:
-            file = request.FILES['file']
-            ext = os.path.splitext(file.name)[1]
-            filename = random_string(32) + ext
-            path = os.path.join(UPLOADE_DIR, filename)
-            destination = open(path, 'wb')
-
-            for chunk in file.chunks():
-                destination.write(chunk)
-
-            files = FileModel(file_name=filename, original_name=file.name)
-            files.save()
-        except Exception:
-            return render(request, 'errors/error.html')
-
-        file_id = files.pk
+        files = FileModel.objects.all().filter(id=request.POST.get('file_id')).first()
 
         try:
             target_img_path = UPLOADE_DIR + theme.file.file_name
@@ -100,6 +103,7 @@ def compare(request, id):
 
             comparing_img_path = UPLOADE_DIR + files.file_name
             comparing_img = cv2.imread(comparing_img_path)
+
             comparing_img = cv2.resize(comparing_img, IMG_SIZE)
             comparing_hist = cv2.calcHist(
                 [comparing_img], [0], None, [256], [0, 256])
@@ -117,7 +121,7 @@ def compare(request, id):
         items = {
             "ret": round(calcHistTo50(hist) + calcMatchTo50(match), 2),
             "theme_id": id,
-            "file_id": file_id
+            "file_id": files.id
         }
 
         return render(request, 'compare/compare.html', items)
@@ -126,16 +130,12 @@ def compare(request, id):
 def calcHistTo50(hist):
     if hist < 0:
         hist = 0
-    print(hist)
-    print(round(hist * 50, 2))
     return round(hist * 50, 2)
 
 
 def calcMatchTo50(match):
     if match > 100:
         match = 100
-    print(match)
-    print(round(50 - (match / 2), 2))
     return round(50 - (match / 2), 2)
 
 

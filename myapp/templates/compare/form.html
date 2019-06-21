@@ -5,9 +5,14 @@
     {% load static %}
     お題画像：<img src="{% static 'files/' %}{{ theme.file.file_name }}" alt="{{ theme.title }}">
     <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
         比較画像：<span class="preview"></span>
-        <input type="file" name="file" required>
+        <input type="hidden" name="theme_id" value="{{ theme.id }}">
+        <input type="file" name="file" id="input_file" required>
+        <button type="button" onclick="file_upload(this)">画像アップロード</button>
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="file_id" id="input_file_id" value="">
         <button type="submit">比較</button>
     </form>
 </div>

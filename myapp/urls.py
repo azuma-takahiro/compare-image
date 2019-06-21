@@ -10,5 +10,6 @@ urlpatterns = [
     path('themes/', views.theme_index, name="theme_index"),
     path('compare/<int:id>', views.compare, name="compare"),
     path('themes/entry/<int:id>', views.entry, name="entry"),
-    path('ranking/<int:theme_id>', views.ranking, name="ranking")
+    path('ranking/<int:theme_id>', views.ranking, name="ranking"),
+    path('ajax/upload_file', views.upload_file, name="upload_file")
 ]

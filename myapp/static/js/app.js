@@ -29,3 +29,58 @@ $(function () {
         reader.readAsDataURL(file);
     });
 });
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    crossDomain: false, // obviates need for sameOrigin test
+    beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+function file_upload(button) {
+    var form = $(button).parent('form').get(0);
+    var formData = new FormData(form);
+    if ($('#input_file')[0].files[0] === undefined) {
+        alert('画像が選択されていません！！！')
+        return false;
+    }
+
+    $.ajax({
+        url: '/ajax/upload_file',
+        method: 'post',
+        dataType: 'json',
+        data: formData,
+        processData: false,
+        contentType: false
+    }).done(function (res) {
+        console.log('SUCCESS', res)
+        $('#input_file_id').val(res.file_id);
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.log('ERROR', jqXHR, textStatus, errorThrown);
+    })
+
+    return false;
+}
