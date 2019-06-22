@@ -89,7 +89,8 @@ body {
     "ヒラギノ丸ゴシック Pro W3", "Hiragino maru Gothic Pro", "MS PGothic",
     "Helvetica", "sans-serif";
   font-size: 14px;
-  /* background: linear-gradient(-135deg, #e4a972, #9941d8); */
+  /*background: linear-gradient(-135deg, #e4a972, #9941d8);
+  */
   background: linear-gradient(to left, #24c6dc, #514a9d);
   line-height: 1.5;
   color: #333333;
@@ -402,7 +403,21 @@ form > .submit-btn:hover {
 }
 
 .index-area table td a:hover {
-  opacity: 0.6;
+  animation-name: rotateAnime;
+  animation-duration: 4s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+@keyframes rotateAnime {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
 }
 
 .index-area table td a:first-of-type {
@@ -498,6 +513,10 @@ form > .submit-btn:hover {
 
 .form-area button:hover {
   opacity: 0.6;
+}
+
+.form-area img {
+  margin-left: 20px;
 }
 
 .scoring {
