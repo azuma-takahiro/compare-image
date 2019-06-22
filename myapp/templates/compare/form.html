@@ -1,19 +1,41 @@
 {% extends "../_base.html" %}
 <!--  -->
 {% block content %}
-<div class="container">
-    {% load static %}
-    お題画像：<img src="{% static 'files/' %}{{ theme.file.file_name }}" alt="{{ theme.title }}">
+<div class="container under-container form-area rankinng-form">
+  <div>
+    <h4>
+      {% load static %} お題画像
+    </h4>
+    <img
+      src="{% static 'files/' %}{{ theme.file.file_name }}"
+      alt="{{ theme.title }}"
+    />
+  </div>
+  <div>
     <form method="POST" enctype="multipart/form-data">
-        比較画像：<span class="preview"></span>
-        <input type="hidden" name="theme_id" value="{{ theme.id }}">
-        <input type="file" name="file" id="input_file" required>
-        <button type="button" onclick="file_upload(this)">画像アップロード</button>
+      <h4>
+        比較画像
+      </h4>
+      <span class="preview"></span>
+      <input type="hidden" name="theme_id" value="{{ theme.id }}" />
+      <label class="select-img">
+        作成した画像を選択してください
+        <input type="file" name="file" id="input_file" required />
+      </label>
+      <button
+        type="button"
+        onclick="file_upload(this)"
+        id="uplode"
+        disabled="disabled"
+      >
+        画像アップロード
+      </button>
     </form>
     <form method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="file_id" id="input_file_id" value="">
-        <button type="submit">比較</button>
+      {% csrf_token %}
+      <input type="hidden" name="file_id" id="input_file_id" value="" />
+      <button type="submit" id="scoring" disabled="disabled">比較開始</button>
     </form>
+  </div>
 </div>
 {% endblock %}

@@ -1,0 +1,553 @@
+/* reset.css */
+/* margin padding reset */
+body,
+div,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+img,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+select {
+  margin: 0;
+  padding: 0;
+}
+
+/* remove list point mark */
+ul,
+ol {
+  list-style: none;
+}
+
+/* remove border & off descender */
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+/* remove descender */
+svg,
+input,
+select,
+textarea,
+label {
+  vertical-align: middle;
+}
+
+/* set collapse */
+table {
+  border-collapse: collapse;
+}
+
+/* off bold */
+th,
+em,
+strong {
+  font-weight: normal;
+}
+
+/* all elements to border-box */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* break word for all elements */
+*,
+*:before,
+*:after {
+  word-break: break-all;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+/* Base style */
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+    "ヒラギノ丸ゴシック Pro W3", "Hiragino maru Gothic Pro", "MS PGothic",
+    "Helvetica", "sans-serif";
+  font-size: 14px;
+  /* background: linear-gradient(-135deg, #e4a972, #9941d8); */
+  background: linear-gradient(to left, #24c6dc, #514a9d);
+  line-height: 1.5;
+  color: #333333;
+  word-break: break-all;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+svg,
+input,
+select,
+textarea,
+label {
+  font-family: "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+    "ヒラギノ丸ゴシック Pro W3", "Hiragino maru Gothic Pro", "MS PGothic",
+    "Helvetica", "sans-serif";
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+  color: #333;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-indent: 0.01px; /*Firefox用*/
+  text-overflow: ""; /*Firefox用*/
+}
+
+/* original style */
+
+/* common */
+
+button:disabled {
+  background-color: #ddd !important;
+  cursor: default;
+  opacity: 0.6;
+}
+.under-container {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding-top: 60px;
+  padding-bottom: 80px;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  opacity: 0;
+  min-width: 720px;
+  animation-name: fadeContainer;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.2s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeContainer {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* header */
+.header-bg {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header-bg > .navbar-brand {
+  color: #fff;
+  font-size: 16px;
+}
+
+.header-bg > .navbar-brand:hover {
+  color: #fff;
+  opacity: 0.4;
+}
+
+.navbar-nav > .nav-item > .nav-link {
+  color: #fff;
+  font-size: 16px;
+}
+
+.navbar-nav > .nav-item > .nav-link:hover {
+  color: #fff;
+  opacity: 0.4;
+}
+
+/* home */
+.top-container {
+  height: 100%;
+  padding-top: 120px;
+}
+
+.top-container h1 {
+  color: #fff;
+  font-size: 38px;
+  font-weight: normal;
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+  margin-bottom: 30px;
+  opacity: 0;
+  padding-left: 100px;
+  letter-spacing: 1.2px;
+  animation-name: fadeIn;
+  animation-duration: 4s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+  }
+  100% {
+    opacity: 1;
+    padding-left: 10px;
+  }
+}
+
+.top-container ul li {
+  margin-top: 20px;
+}
+
+.top-container ul li:first-child {
+  margin-top: 0px;
+}
+
+.top-container ul li {
+  width: 363px;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.top-container ul li:hover {
+  opacity: 0.6;
+}
+
+.top-container ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 38px;
+  text-align: center;
+  color: #fff;
+}
+
+.top-container ul li a:hover {
+  animation-name: hoverAnime;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hoverAnime {
+  from {
+    transform: skewX(0deg);
+    -webkit-transform: skewX(0deg);
+    -moz-transform: skewX(0deg);
+  }
+  25.00% {
+    transform: skewX(80deg);
+    -webkit-transform: skewX(80deg);
+    -moz-transform: skewX(80deg);
+  }
+  75.00% {
+    transform: skewX(-20deg);
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+  }
+  90.00% {
+    transform: skewX(0deg);
+    -webkit-transform: skewX(0deg);
+    -moz-transform: skewX(0deg);
+  }
+  to {
+    transform: skewX(0deg);
+    -webkit-transform: skewX(0deg);
+    -moz-transform: skewX(0deg);
+  }
+}
+
+/* form */
+.form-area input,
+.form-area textarea {
+  outline: 0;
+  border: none;
+  background-color: #eee;
+  width: 572px;
+  padding: 10px;
+}
+
+.form-area > form {
+  width: 680px;
+  margin: 0 auto;
+}
+
+.form-area > form > div {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.form-area > form > div > div {
+  padding: 10px;
+  color: #fff;
+  width: 108px;
+  border: 1px solid #fff;
+}
+
+.select-img > input {
+  display: none;
+}
+.select-img {
+  color: #fff;
+  padding: 10px 10px 10px 20px;
+  border-radius: 4px;
+  margin-left: 20px;
+  position: relative;
+  height: 40px;
+}
+.select-img:hover {
+  opacity: 0.6;
+}
+
+.select-img:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 12px;
+  border-color: transparent transparent transparent #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+}
+
+.select-img:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+form > .submit-btn {
+  width: 100%;
+  border-radius: 4px;
+}
+
+form > .submit-btn:hover {
+  opacity: 0.6;
+}
+
+/* index */
+.index-area > h3 {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.index-area > table {
+  text-align: center;
+  color: #fff;
+}
+
+.index-area table td,
+.index-area table th {
+  vertical-align: middle;
+  border-bottom: none;
+}
+
+.index-area table td a {
+  display: block;
+  border: 2px solid #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  color: #fff;
+  text-align: center;
+  height: 40px;
+  line-height: 36px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.index-area table td a:hover {
+  opacity: 0.6;
+}
+
+.index-area table td a:first-of-type {
+  margin-top: 0;
+}
+
+.index-area table td a:last-of-type {
+  border-color: #ff8181;
+  color: #ff8181;
+}
+
+.index-area table td > img {
+  width: 200px;
+}
+
+/* complate */
+.complate > p {
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+}
+.complate > p > a {
+  display: block;
+  font-size: 12px;
+  color: #fff;
+  display: block;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  width: 200px;
+  height: 30px;
+  line-height: 28px;
+  margin: 20px auto 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.complate > p > a:hover {
+  opacity: 0.8;
+}
+/* rankinng */
+.rankinng-form {
+  width: 420px;
+  padding: 60px 40px 80px;
+}
+
+.rankinng-form h4 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.rankinng-form h4:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+}
+
+.rankinng-form div {
+  margin-bottom: 60px;
+}
+
+.rankinng-form div:last-of-type {
+  margin-bottom: 0;
+}
+
+.rankinng-form div img {
+  width: 200px;
+  display: block;
+}
+
+.form-area button {
+  outline: 0;
+  display: block;
+  border: 2px solid #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  color: #fff;
+  background-color: transparent;
+  text-align: center;
+  width: 340px;
+  height: 40px;
+  line-height: 36px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.form-area button:hover {
+  opacity: 0.6;
+}
+
+.scoring {
+  color: #fff;
+  text-align: center;
+}
+
+.scoring h4 {
+  font-size: 18px;
+}
+
+.scoring p {
+  margin-bottom: 8px;
+}
+
+.scoring .score {
+  display: inline-block;
+  opacity: 0;
+  margin-bottom: 20px;
+  animation-name: scoreAnime;
+  animation-duration: 6s;
+  animation-timing-function: ease-out;
+  animation-delay: 1s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+@keyframes scoreAnime {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.scoring input {
+  outline: 0;
+  border: none;
+  background-color: #eee;
+}
+
+.scoring button {
+  outline: 0;
+  border: none;
+  background-color: #ff8181;
+  color: #fff;
+}
+
+.scoring button:hover {
+  opacity: 0.8;
+}

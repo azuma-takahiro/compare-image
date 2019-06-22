@@ -1,38 +1,47 @@
 {% extends "../_base.html" %}
 <!--  -->
 {% block content %}
-<div class="container">
-    <h3>お題選択：</h3>
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>タイトル</th>
-                <th>コメント</th>
-                <th>画像</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for theme in themes %}
-            <tr>
-                <td>{{ theme.id }}</td>
-                <td>{{ theme.title }}</td>
-                <td>{{ theme.comments | linebreaksbr}}</td>
-                {% load static %}
-                <td><img src="{% static 'files/' %}{{ theme.file.file_name }}" alt="{{ theme.title }}"></td>
-                <td>
-                    <a href="{% url 'ranking' theme.id %}">ランキングを見る</a><br>
-                    <a href="{% url 'compare' theme.id %}">このお題を選ぶ</a><br>
-                    <a href="{% url 'theme_delete' theme.id %}" onclick="return confirm('削除します。よろしいですか？');">削除</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5">対象のデータがありません。</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container under-container index-area">
+  <h3>お題を選択してください</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>タイトル</th>
+        <th>コメント</th>
+        <th>画像</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for theme in themes %}
+      <tr>
+        <td>{{ theme.id }}</td>
+        <td>{{ theme.title }}</td>
+        <td>{{ theme.comments | linebreaksbr }}</td>
+        {% load static %}
+        <td>
+          <img
+            src="{% static 'files/' %}{{ theme.file.file_name }}"
+            alt="{{ theme.title }}"
+          />
+        </td>
+        <td>
+          <a href="{% url 'ranking' theme.id %}">ランキングを見る</a>
+          <a href="{% url 'compare' theme.id %}">このお題を選ぶ</a>
+          <a
+            href="{% url 'theme_delete' theme.id %}"
+            onclick="return confirm('削除します。よろしいですか？');"
+            >削除</a
+          >
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">対象のデータがありません。</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}

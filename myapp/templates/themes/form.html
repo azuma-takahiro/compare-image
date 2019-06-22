@@ -1,13 +1,31 @@
 {% extends "../_base.html" %}
 <!--  -->
 {% block content %}
-<div class="container">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        タイトル：<input type="text" name="title">
-        コメント：<textarea name="comments" cols="30" rows="10"></textarea>
-        お題画像：<span class="preview"></span><input type="file" name="file">
-        <input type="submit" value="upload">
-    </form>
+<div class="container under-container form-area">
+  <form method="POST" enctype="multipart/form-data">
+    <div>
+      <div>
+        {% csrf_token %} タイトル
+      </div>
+      <input type="text" name="title" />
+    </div>
+    <div>
+      <div>
+        コメント
+      </div>
+      <textarea name="comments" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      <div>
+        お題画像
+      </div>
+      <span class="preview"></span>
+      <label class="select-img">
+        お題となる画像ファイルを選択してください
+        <input type="file" name="file" required />
+      </label>
+    </div>
+    <input type="submit" value="アップロードする" class="submit-btn" />
+  </form>
 </div>
 {% endblock %}

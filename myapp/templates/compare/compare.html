@@ -1,17 +1,15 @@
 {% extends "../_base.html" %}
 <!--  -->
 {% block content %}
-<div class="container">
-    得点：
-    <p>{{ ret }}</p>
-
-    ランキングに登録する
-    <form action="{% url 'entry' theme_id %}" method="POST">
-        {% csrf_token %}
-        お名前：<input type="text" name="name">
-        <input type="hidden" name="point" value="{{ ret }}">
-        <input type="hidden" name="file_id" value="{{ file_id }}">
-        <button type="submit">登録</button>
-    </form>
+<div class="container under-container rankinng-form scoring">
+  <h4>
+    得点 : <span class="score">{{ ret }}</span>
+  </h4>
+  <form action="{% url 'entry' theme_id %}" method="POST">
+    {% csrf_token %} お名前：<input type="text" name="name" />
+    <input type="hidden" name="point" value="{{ ret }}" />
+    <input type="hidden" name="file_id" value="{{ file_id }}" />
+    <button type="submit">ランキング登録</button>
+  </form>
 </div>
 {% endblock %}
