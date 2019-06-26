@@ -1,0 +1,72 @@
+{% extends "../_base.html" %}
+<!--  -->
+{% block content %}
+<div class="container under-container index-area" style="max-width: 1400px;">
+    <h3>お題を選択してください</h3>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="min-width: 70px;">ID</th>
+                <th>アップロードファイル名</th>
+                <th>オリジナルファイル名</th>
+                <th>アップロード日時</th>
+                <th>画像</th>
+                <th>ランキング登録名</th>
+                <th>ランキング登録ポイント</th>
+                <th>お題タイトル</th>
+                <th>お題コメント</th>
+                <th style="min-width: 75px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr>
+                <td>{{ file.id }}</td>
+                <td>{{ file.file_name }}</td>
+                <td>{{ file.original_name }}</td>
+                <td>{{ file.upload_time }}</td>
+                {% load static %}
+                <td>
+                    <img src="{% static 'files/' %}{{ file.file_name }}" alt="{{ file.file_name }}" />
+                </td>
+                <td>
+                    {% if file.name %}
+                    {{ file.name }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if file.point %}
+                    {{ file.point }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if file.title %}
+                    {{ file.title }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if file.comments %}
+                    {{ file.comments }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'file_delete' file.id %}" onclick="return confirm('削除します。よろしいですか？');">削除</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">対象のデータがありません。</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

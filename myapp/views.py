@@ -162,3 +162,19 @@ def ranking(request, theme_id):
         theme_id=theme_id).order_by('point').reverse()
     theme = ThemeModel.objects.all().filter(id=theme_id).first()
     return render(request, 'themes/ranking.html', {'items': items, 'theme': theme})
+
+
+def file_index(request):
+    files = FileModel.objects.raw(
+        'SELECT f.*, i.name name, i.point point, t.title title, t.comments comments FROM myapp_filemodel as f LEFT JOIN myapp_itemmodel i ON f.id = i.file_id LEFT JOIN myapp_thememodel t ON f.id = t.file_id')
+
+    return render(request, 'files/index.html', {"files": files})
+
+
+def file_delete(request, id):
+    file = FileModel.objects.all().filter(id=id).first()
+    path = os.path.join(UPLOADE_DIR, file.file_name)
+    if os.path.exists(path):
+        os.remove(path)
+    FileModel.objects.filter(id=id).delete()
+    return redirect('file_index')

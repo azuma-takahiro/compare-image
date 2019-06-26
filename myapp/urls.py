@@ -11,5 +11,7 @@ urlpatterns = [
     path('compare/<int:id>', views.compare, name="compare"),
     path('themes/entry/<int:id>', views.entry, name="entry"),
     path('ranking/<int:theme_id>', views.ranking, name="ranking"),
+    path('files/', views.file_index, name='file_index'),
+    path('files/delete/<int:id>', views.file_delete, name="file_delete"),
     path('ajax/upload_file', views.upload_file, name="upload_file")
 ]
